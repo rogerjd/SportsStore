@@ -1,0 +1,17 @@
+{
+  "version": "1.0.0-*",
+  "frameworks": {
+    "net451": {
+      "wrappedProject": "../../SportsStore.Domain/SportsStore.Domain.csproj",
+      "bin": {
+        "assembly": "../../SportsStore.Domain/obj/{configuration}/SportsStore.Domain.dll",
+        "pdb": "../../SportsStore.Domain/obj/{configuration}/SportsStore.Domain.pdb"
+      },
+      "dependencies": {
+        "Castle.Core": "3.3.3",
+        "Moq": "4.5.9",
+        "Ninject": "3.2.2.0"
+      }
+    }
+  }
+}
