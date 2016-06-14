@@ -26,8 +26,8 @@ namespace SportsStore.WebUI
           "{controller}/{action}/{id}",   // URL with parameters
           new
           {
-              controller = "Home",
-              action = "Index",
+              controller = "Product",
+              action = "List",
               id = UrlParameter.Optional
           }    // Parameter defaults
         );
