@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SportsStore.Domain.Entities;
 
-namespace SportsStore.Domain.Abstract
+namespace SportsStore.Domain.Interface
 {
     public interface IProductRepository
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using SportsStore.Domain.Abstract;
+using SportsStore.Domain.Interface;
 
 namespace SportsStore.WebUI.Controllers
 {
