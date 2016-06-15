@@ -31,12 +31,26 @@ namespace SportsStore.UnitTests.Controllers
             ProductController controller = new ProductController(mock.Object);
             controller.PageSize = 3;
 
-            IEnumerable<Product> result = (IEnumerable<Product>)controller.List(2).Model; //ref: had trouble here; had to change callee
+            //            IEnumerable<Product> result = (IEnumerable<Product>)controller.List(2).Model; //ref: had trouble here; had to change callee
 
+            //full
+            IEnumerable<Product> result = (IEnumerable<Product>)(controller.List(1) as ViewResult).Model;
             Product[] prodArray = result.ToArray();
+            Assert.IsTrue(prodArray.Length == 3);
+            Assert.AreEqual(prodArray[0].Name, "P1");
+
+            //part
+            result = (IEnumerable<Product>)(controller.List(2) as ViewResult).Model;
+            prodArray = result.ToArray();
             Assert.IsTrue(prodArray.Length == 2);
             Assert.AreEqual(prodArray[0].Name, "P4");
             Assert.AreEqual(prodArray[1].Name, "P5");
+
+            //empty
+            result = (IEnumerable<Product>)(controller.List(3) as ViewResult).Model;
+            prodArray = result.ToArray();
+            Assert.IsTrue(prodArray.Length == 0);
+
         }
     }
 }

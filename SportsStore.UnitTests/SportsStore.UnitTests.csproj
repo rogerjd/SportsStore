@@ -96,6 +96,7 @@
   <ItemGroup>
     <Compile Include="Controllers\ProductCtrl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\PageLinks.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />

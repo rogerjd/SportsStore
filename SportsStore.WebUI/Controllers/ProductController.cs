@@ -19,7 +19,7 @@ namespace SportsStore.WebUI.Controllers
         }
 
         // GET: Product
-        public ViewResult List(int page = 1)
+        public ActionResult List(int page = 1)
         {
             return View(repository.Products
                 .OrderBy(p => p.ProductID)
