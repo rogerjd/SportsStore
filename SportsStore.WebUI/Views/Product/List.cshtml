@@ -19,4 +19,5 @@
 
 <div class="pager">
     @Html.PageLinks(Model.PagingInfo, x => Url.Action("List", new { page = x }))
+    @Model.PagingInfo.Tst() @*better to use @Html, as it is clearer*@
 </div>

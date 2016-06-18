@@ -57,7 +57,7 @@ namespace SportsStore.UnitTests.Views
             controller.PageSize = 3;
 
             //run
-            ProductListViewModel result = (ProductListViewModel)(controller.List(2) as ViewResult).Model;
+            ProductListViewModel result = (ProductListViewModel)(controller.List(null, 2) as ViewResult).Model;
 
             //done
             PagingInfo pageInfo = result.PagingInfo;

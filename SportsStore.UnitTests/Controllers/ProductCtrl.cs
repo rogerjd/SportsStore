@@ -35,23 +35,47 @@ namespace SportsStore.UnitTests.Controllers
             //            IEnumerable<Product> result = (IEnumerable<Product>)controller.List(2).Model; //ref: had trouble here; had to change callee
 
             //full
-            ProductListViewModel result = (ProductListViewModel)(controller.List(1) as ViewResult).Model;
+            ProductListViewModel result = (ProductListViewModel)(controller.List(null, 1) as ViewResult).Model;
             Product[] prodArray = result.Products.ToArray();
             Assert.IsTrue(prodArray.Length == 3);
             Assert.AreEqual(prodArray[0].Name, "P1");
 
             //part
-            result = (ProductListViewModel)(controller.List(2) as ViewResult).Model;
+            result = (ProductListViewModel)(controller.List(null, 2) as ViewResult).Model;
             prodArray = result.Products.ToArray();
             Assert.IsTrue(prodArray.Length == 2);
             Assert.AreEqual(prodArray[0].Name, "P4");
             Assert.AreEqual(prodArray[1].Name, "P5");
 
             //empty
-            result = (ProductListViewModel)(controller.List(3) as ViewResult).Model;
+            result = (ProductListViewModel)(controller.List(null, 3) as ViewResult).Model;
             prodArray = result.Products.ToArray();
             Assert.IsTrue(prodArray.Length == 0);
+        }
 
+        [TestMethod]
+        public void Can_Filter_Products()
+        {
+            //init
+            Mock<IProductRepository> mock = new Mock<IProductRepository>();
+            mock.Setup(m => m.Products).Returns(new Product[]
+            {
+                new Product {ProductID=1, Name="P1", Category= "Cat1" },
+                new Product {ProductID=2, Name="P2", Category= "Cat2"},
+                new Product {ProductID=3, Name="P3", Category= "Cat1"},
+                new Product {ProductID=4, Name="P4", Category= "Cat2"},
+                new Product {ProductID=5, Name="P5", Category= "Cat3"}
+            }.AsQueryable());
+
+            ProductController controller = new ProductController(mock.Object);
+
+            //run
+            Product[] result = ((ProductListViewModel) (controller.List("Cat2", 1) as ViewResult).Model).Products.ToArray();
+
+            //done
+            Assert.AreEqual(result.Length, 2);
+            Assert.IsTrue(result[0].Name == "P2" && result[0].Category == "Cat2");
+            Assert.IsTrue(result[1].Name == "P4" && result[1].Category == "Cat2");
         }
     }
 }
