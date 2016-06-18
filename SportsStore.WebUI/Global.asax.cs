@@ -24,9 +24,10 @@ namespace SportsStore.WebUI
         {
             routes.IgnoreRoute("{resource}.axd/{*pathinfo}");
 
-            routes.MapRoute(null,
-                "", //matches empty URL
-                new
+            routes.MapRoute(
+                name: null,
+                url: "", //matches empty URL
+                defaults: new
                 {
                     controller = "Product",
                     action = "List",
@@ -34,10 +35,11 @@ namespace SportsStore.WebUI
                     page = 1
                 });
 
-            routes.MapRoute(null,
-                "Page{page}",
-                new { Controller = "Product", action = "List", category = (string)null },
-                new { page = @"\d+" } //constraint: page nust be numeric
+            routes.MapRoute(
+                name: null,
+                url: "Page{page}",
+                defaults: new { Controller = "Product", action = "List", category = (string)null },
+                constraints: new { page = @"\d+" } //constraint: page nust be numeric
                 );
 
             routes.MapRoute(null,

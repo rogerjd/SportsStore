@@ -18,6 +18,7 @@
 <label id="def">def</label>
 
 <div class="pager">
-    @Html.PageLinks(Model.PagingInfo, x => Url.Action("List", new { page = x }))
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("List",
+        new { page = x, category = Model.CurrentCategory }))
     @Model.PagingInfo.Tst() @*better to use @Html, as it is clearer*@
 </div>
