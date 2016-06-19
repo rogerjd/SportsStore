@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace SportsStore.UnitTests.Controllers
 {
     [TestClass]
-    public class MyTestClass
+    public class CategoriesTestClass
     {
         [TestMethod]
         public void Can_Create_Categories()
@@ -38,5 +38,28 @@ namespace SportsStore.UnitTests.Controllers
             Assert.AreEqual(results[1], "Oranges");
             Assert.AreEqual(results[2], "Plums");
         }
+
+        [TestMethod]
+        public void Indicates_Selected_Category()
+        {
+            //init
+            Mock<IProductRepository> mock = new Mock<IProductRepository>();
+            mock.Setup(m => m.Products).Returns(new Product[]
+            {
+                new Product {ProductID=1, Name="P1", Category="Apples" },
+                new Product {ProductID=4, Name="P2", Category="Oranges"},
+            }.AsQueryable());
+
+            NavController target = new NavController(mock.Object);
+
+            string categoryToSelect = "Apples";
+
+            //run
+            string result = target.Menu(categoryToSelect).ViewData["SelectedCategory"].ToString();
+
+            //done
+            Assert.AreEqual(categoryToSelect, result);
+        }
+
     }
 }
