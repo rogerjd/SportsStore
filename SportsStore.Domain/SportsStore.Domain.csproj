@@ -62,6 +62,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Cart.cs" />
     <Compile Include="Implementation\EFProductRepository.cs" />
     <Compile Include="Interface\IProductRepository.cs" />
     <Compile Include="Implementation\EFDbContext.cs" />
