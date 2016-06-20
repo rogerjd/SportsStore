@@ -1,5 +1,6 @@
 ﻿using SportsStore.Domain.Entities;
 using SportsStore.Domain.Interface;
+using SportsStore.WebUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,6 +42,11 @@ namespace SportsStore.WebUI.Controllers
             }
 
             return RedirectToAction("Index", new { returnUrl });
+        }
+
+        public ViewResult Index(string returnUrl)
+        {
+            return View(new CartIndexViewModel { Cart = GetCart(), ReturnUrl = returnUrl });
         }
 
         Cart GetCart()
