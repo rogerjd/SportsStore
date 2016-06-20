@@ -96,6 +96,7 @@
   <ItemGroup>
     <Compile Include="Controllers\Categories.cs" />
     <Compile Include="Controllers\ProductCtrl.cs" />
+    <Compile Include="Entities\Cart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\PageLinks.cs" />
   </ItemGroup>
