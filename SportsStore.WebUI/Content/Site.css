@@ -68,6 +68,7 @@ div#categories {
         }
 
 
+
 div.item {
     border-top: 1px dotted gray;
     padding-top: .7em;
@@ -89,6 +90,21 @@ div.item {
         margin: .4em 0 0 0;
     }
 
+    div.item form {
+        float: right;
+    }
+
+    div.item input{
+        color: white; 
+        background-color: #333;
+        border: 1px solid black;
+        cursor: pointer;
+    }
+
+form {
+    margin: 0;
+    padding: 0;
+}
 
 div.pager {
     text-align: right;
@@ -112,6 +128,7 @@ div.pager {
             background-color: #353535;
             color: white;
         }
+
 
 
 label#abc {
