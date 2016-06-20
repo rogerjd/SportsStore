@@ -6,6 +6,8 @@ using System.Web.Security;
 using System.Web.SessionState;
 using SportsStore.WebUI.Infrastructure;
 using System.Web.Routing;
+using SportsStore.Domain.Entities;
+using SportsStore.WebUI.Binders;
 
 namespace SportsStore.WebUI
 {
@@ -18,6 +20,7 @@ namespace SportsStore.WebUI
             //            RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
             ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());
+            ModelBinders.Binders.Add(typeof(Cart), new CartModelBinder());
         }
 
         private void RegisterRoutes(RouteCollection routes)
