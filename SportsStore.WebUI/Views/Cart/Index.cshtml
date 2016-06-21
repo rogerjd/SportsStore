@@ -6,13 +6,14 @@
 
 <h2>Your Cart</h2>
 
-<table width="80%" align="center">
+<table id="cart" align="center">
     <thead>
         <tr>
-            <th align="center">Quantity</th>
+            <th >Quantity</th>
             <th align="left">Item</th>
             <th align="right">Price</th>
             <th align="right">Subtotal</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -23,6 +24,14 @@
                 <td align="left">@line.Product.Name</td>
                 <td align="right">@line.Product.Price.ToString("c")</td>
                 <td align="right">@((line.Quantity * line.Product.Price).ToString("c"))</td>
+                <td align="center">
+                    @using (Html.BeginForm("RemoveFromCart", "Cart"))
+                    {
+                        @Html.Hidden("ProductId", line.Product.ProductID)
+                        @Html.HiddenFor(x => x.ReturnUrl)
+                        <input class="actionButtons" type="submit" value="Remove" />
+                    }
+                </td>
             </tr>
         }
     </tbody>
