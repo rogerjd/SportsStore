@@ -70,7 +70,6 @@ namespace SportsStore.WebUI.Controllers
                 orderProcessor.ProcessOrder(cart, shippingDetails);
                 cart.Clear();
                 return View("Completed");
-
             }
             else
             {

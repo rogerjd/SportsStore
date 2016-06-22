@@ -9,11 +9,15 @@ Please enter your details, and we'll ship your goods right away!
 
 @using (Html.BeginForm())
 {
+    @Html.ValidationSummary()
+
     <h3>Ship to</h3>
     <div class="col-md-1">Name:</div> <div>@Html.EditorFor(x => x.Name)</div>
 
     <h3>Address</h3>
-    <div class="col-md-1">Line 1:</div> <div>@Html.EditorFor(x => x.Line1)</div>
+    <div class="row">
+        <div class="col-md-1">Line 1:</div> <div>@Html.EditorFor(x => x.Line1)</div>
+    </div>
     <div class="col-md-1">Line 2:</div>    <div>@Html.EditorFor(x => x.Line2)</div>
     <div class="col-md-1">Line 3:</div>    <div>@Html.EditorFor(x => x.Line3)</div>
     <div class="col-md-1">City:</div>    <div>@Html.EditorFor(x => x.City)</div>
