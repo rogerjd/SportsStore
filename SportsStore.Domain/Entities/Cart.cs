@@ -13,7 +13,7 @@ namespace SportsStore.Domain.Entities
         public void AddItem(Product product, int quantity)
         {
             CartLine line = lineCollection
-                .Where(p => p.Product.ProductID == product.ProductID)
+                .Where(l => l.Product.ProductID == product.ProductID)
                 .FirstOrDefault();
             if (line == null)
             {
