@@ -63,7 +63,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Cart.cs" />
+    <Compile Include="Entities\ShippingDetails.cs" />
     <Compile Include="Implementation\EFProductRepository.cs" />
+    <Compile Include="Implementation\EmailOrderProcessor.cs" />
+    <Compile Include="Interface\IOrderProcessor.cs" />
     <Compile Include="Interface\IProductRepository.cs" />
     <Compile Include="Implementation\EFDbContext.cs" />
     <Compile Include="Entities\Product.cs" />

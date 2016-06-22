@@ -9,10 +9,11 @@ using SportsStore.Domain.Entities;
 using System.Linq;
 using SportsStore.Domain.Implementation;
 using SportsStore.Domain.Interface;
+using System.Configuration;
 
 namespace SportsStore.WebUI.Infrastructure
 {
-    public class NinjectControllerFactory: DefaultControllerFactory
+    public class NinjectControllerFactory : DefaultControllerFactory
     {
         IKernel ninjectKernel;
 
@@ -32,16 +33,23 @@ namespace SportsStore.WebUI.Infrastructure
 
         private void AddBindings()
         {
-/*
-            Mock<IProductRepository> mock = new Mock<IProductRepository>();
-            mock.Setup(m => m.Products).Returns(new List<Product>
-            {
-                new Product {Name = "Football", Price= 25 },
-                new Product {Name = "Surf board", Price= 179 },
-                new Product {Name = "Running shoes", Price= 95},
-            }.AsQueryable());
-*/
+            /*
+                        Mock<IProductRepository> mock = new Mock<IProductRepository>();
+                        mock.Setup(m => m.Products).Returns(new List<Product>
+                        {
+                            new Product {Name = "Football", Price= 25 },
+                            new Product {Name = "Surf board", Price= 179 },
+                            new Product {Name = "Running shoes", Price= 95},
+                        }.AsQueryable());
+            */
             ninjectKernel.Bind<IProductRepository>().To<EFProductRepository>();
+
+            EmailSettings emailSettings = new EmailSettings
+            {
+                WriteAsFile = bool.Parse(ConfigurationManager.AppSettings["Email.WriteAsFile"] ?? "false")
+            };
+
+            ninjectKernel.Bind<IOrderProcessor>().To<EmailOrderProcessor>().WithConstructorArgument("settings", emailSettings);
         }
     }
 }

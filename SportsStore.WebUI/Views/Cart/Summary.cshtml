@@ -10,5 +10,5 @@
         @Model.Lines.Sum(l => l.Quantity) item(s)
         @Model.ComputeTotalValue().ToString("c")
     </span>
-    @Html.ActionLink("Checkout", "Index", "Cart", new { returnUrl = Request.Url.PathAndQuery }, null)
+    @Html.ActionLink("View Cart", "Index", "Cart", new { returnUrl = Request.Url.PathAndQuery }, null)
 </div>
