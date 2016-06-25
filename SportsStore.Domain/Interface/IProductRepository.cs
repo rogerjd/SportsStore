@@ -8,5 +8,7 @@ namespace SportsStore.Domain.Interface
         IQueryable<Product> Products { get; }
 
         void SaveProduct(Product product);
+
+        void DeleteProduct(Product product);
     }
 }

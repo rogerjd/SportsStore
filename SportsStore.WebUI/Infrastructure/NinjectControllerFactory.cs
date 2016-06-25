@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using System.Web.Routing;
 using Ninject;
-using SportsStore.Domain.Concrete;
+using SportsStore.Domain.Implementation;
 using Moq;
 using System.Collections.Generic;
 using SportsStore.Domain.Entities;

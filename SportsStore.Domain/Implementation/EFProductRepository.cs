@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SportsStore.Domain.Entities;
-using SportsStore.Domain.Concrete;
+using SportsStore.Domain.Implementation;
 
 namespace SportsStore.Domain.Implementation
 {
@@ -19,6 +19,12 @@ namespace SportsStore.Domain.Implementation
             {
                 return context.Products;
             }
+        }
+
+        public void DeleteProduct(Product product)
+        {
+            context.Products.Remove(product);
+            context.SaveChanges();
         }
 
         public void SaveProduct(Product product)
