@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace SportsStore.UnitTests.Controllers
 {
@@ -73,6 +74,42 @@ namespace SportsStore.UnitTests.Controllers
 
             Assert.IsNull(result);
         }
+
+        [TestMethod]
+        public void Can_Save_Valid_Changes()
+        {
+            //init
+            Mock<IProductRepository> mock = new Mock<IProductRepository>();
+            AdminController target = new AdminController(mock.Object);
+
+            Product product = new Product { Name = "Test" };
+
+            //run
+            ActionResult result = target.Edit(product);
+
+            //done
+            Product p2 = new Product { Name = "p2" }; //must be same prod ref to pass
+            mock.Verify(m => m.SaveProduct(product)); 
+            Assert.IsNotInstanceOfType(result, typeof(ViewResult));
+        }
+
+        [TestMethod]
+        public void Cannot_Save_Invalid_Changes()
+        {
+            //init
+            Mock<IProductRepository> mock = new Mock<IProductRepository>();
+            AdminController target = new AdminController(mock.Object);
+            Product product = new Product { Name = "Test" };
+            target.ModelState.AddModelError("error", "error");
+
+            //run
+            ActionResult result = target.Edit(product);
+
+            //done
+            mock.Verify(m => m.SaveProduct(It.IsAny<Product>()), Times.Never()); //must be same prod ref
+            Assert.IsInstanceOfType(result, typeof(ViewResult));
+        }
+
     }
-        
+
 }
