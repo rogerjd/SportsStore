@@ -89,7 +89,7 @@ namespace SportsStore.UnitTests.Controllers
 
             //done
             Product p2 = new Product { Name = "p2" }; //must be same prod ref to pass
-            mock.Verify(m => m.SaveProduct(product)); 
+            mock.Verify(m => m.SaveProduct(product));
             Assert.IsNotInstanceOfType(result, typeof(ViewResult));
         }
 
@@ -110,6 +110,49 @@ namespace SportsStore.UnitTests.Controllers
             Assert.IsInstanceOfType(result, typeof(ViewResult));
         }
 
+        [TestMethod]
+        public void Can_Delete_Valid_Products()
+        {
+            //init
+            Product prod = new Product { ProductID = 2, Name = "test" };
+
+            Mock<IProductRepository> mock = new Mock<IProductRepository>();
+            mock.Setup(m => m.Products).Returns(new Product[] {
+                new Product {ProductID=1,Name="P1" },
+                prod,
+                new Product {ProductID=3,Name="P3" }
+            }.AsQueryable());
+
+            AdminController target = new AdminController(mock.Object);
+
+            //run
+            target.Delete(prod.ProductID);
+
+            //done
+            mock.Verify(m => m.DeleteProduct(prod));
+            //note: nothing is actually deleted, but we only verify the func was called
+            Assert.AreEqual(mock.Object.Products.ToArray().Length, 2);
+        }
+
+        [TestMethod]
+        public void Cannot_Delete_Invalid_Products()
+        {
+            //init
+            Mock<IProductRepository> mock = new Mock<IProductRepository>();
+            mock.Setup(m => m.Products).Returns(new Product[] {
+                new Product {ProductID=1,Name="P1" },
+                new Product {ProductID=2,Name="P2" },
+                new Product {ProductID=3,Name="P3" }
+            }.AsQueryable());
+
+            AdminController target = new AdminController(mock.Object);
+
+            //run
+            target.Delete(100);
+
+            //done
+            mock.Verify(m => m.DeleteProduct(It.IsAny<Product>()), Times.Never());
+        }
     }
 
 }

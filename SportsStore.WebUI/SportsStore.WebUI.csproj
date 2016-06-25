@@ -191,6 +191,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HtmlHelpers\PagingHelpers.cs" />
+    <Compile Include="Infrastructure\Implementation\FormsAuthProvider.cs" />
+    <Compile Include="Infrastructure\Interface\IAuthProvider.cs" />
     <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
     <Compile Include="Models\CartIndexViewModel.cs" />
     <Compile Include="Models\PagingInfo.cs" />
