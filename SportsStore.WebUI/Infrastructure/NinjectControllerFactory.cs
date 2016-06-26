@@ -10,6 +10,8 @@ using System.Linq;
 using SportsStore.Domain.Implementation;
 using SportsStore.Domain.Interface;
 using System.Configuration;
+using SportsStore.WebUI.Infrastructure.Interface;
+using SportsStore.WebUI.Infrastructure.Implementation;
 
 namespace SportsStore.WebUI.Infrastructure
 {
@@ -48,8 +50,9 @@ namespace SportsStore.WebUI.Infrastructure
             {
                 WriteAsFile = bool.Parse(ConfigurationManager.AppSettings["Email.WriteAsFile"] ?? "false")
             };
-
             ninjectKernel.Bind<IOrderProcessor>().To<EmailOrderProcessor>().WithConstructorArgument("settings", emailSettings);
+
+            ninjectKernel.Bind<IAuthProvider>().To<FormsAuthProvider>();
         }
     }
 }

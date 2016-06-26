@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 
 namespace SportsStore.WebUI.Infrastructure.Implementation
 {
@@ -10,7 +11,12 @@ namespace SportsStore.WebUI.Infrastructure.Implementation
     {
         public bool Authenticate(string username, string password)
         {
-            throw new NotImplementedException();
+            bool result = FormsAuthentication.Authenticate(username, password);
+            if (result)
+            {
+                FormsAuthentication.SetAuthCookie(username, false);
+            }
+            return result;
         }
     }
 }
