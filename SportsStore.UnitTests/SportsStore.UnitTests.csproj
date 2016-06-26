@@ -94,6 +94,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\AccountControllerTst.cs" />
     <Compile Include="Controllers\AdminTests.cs" />
     <Compile Include="Controllers\CartControllerTstr.cs" />
     <Compile Include="Controllers\Categories.cs" />
