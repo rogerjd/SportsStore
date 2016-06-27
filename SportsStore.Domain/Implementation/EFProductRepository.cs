@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SportsStore.Domain.Entities;
 using SportsStore.Domain.Implementation;
+using System.Data.Entity;
 
 namespace SportsStore.Domain.Implementation
 {
@@ -32,6 +33,10 @@ namespace SportsStore.Domain.Implementation
             if (product.ProductID == 0)
             {
                 context.Products.Add(product);
+            }
+            else
+            {
+                context.Entry(product).State = EntityState.Modified;
             }
             context.SaveChanges();
         }
