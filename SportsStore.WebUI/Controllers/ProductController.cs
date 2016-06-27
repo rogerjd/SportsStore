@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using SportsStore.Domain.Interface;
 using SportsStore.WebUI.Models;
+using SportsStore.Domain.Entities;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 
 namespace SportsStore.WebUI.Controllers
 {
@@ -43,5 +46,16 @@ namespace SportsStore.WebUI.Controllers
             };
             return View(viewModel);
         }
+
+        public FileContentResult GetImage(int productId)
+        {
+            Product prod = repository.Products.FirstOrDefault(p => p.ProductID == productId);
+            if (prod != null)
+            {
+                return File(prod.ImageData, prod.ImageMimeType);
+            }
+            return null;
+        }
+
     }
 }

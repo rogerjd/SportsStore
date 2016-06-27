@@ -43,7 +43,6 @@ namespace SportsStore.WebUI.Controllers
             {
                 return View(product);
             }
-
         }
 
         public ViewResult Edit(int productId)

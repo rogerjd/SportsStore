@@ -85,7 +85,7 @@ namespace SportsStore.UnitTests.Controllers
             Product product = new Product { Name = "Test" };
 
             //run
-            ActionResult result = target.Edit(product);
+            ActionResult result = target.Edit(product, null);
 
             //done
             Product p2 = new Product { Name = "p2" }; //must be same prod ref to pass
@@ -103,7 +103,7 @@ namespace SportsStore.UnitTests.Controllers
             target.ModelState.AddModelError("error", "error");
 
             //run
-            ActionResult result = target.Edit(product);
+            ActionResult result = target.Edit(product, null);
 
             //done
             mock.Verify(m => m.SaveProduct(It.IsAny<Product>()), Times.Never()); //must be same prod ref
